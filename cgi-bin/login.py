@@ -1,7 +1,6 @@
 !/usr/bin/python
 
-# Philip Guo - CSC 210
-# put in public_html/cgi-bin/ and set the proper execute permissions
+# Daniel Harris, Gabe Issa, Ethan Lipkind - CSC 210
 
 import cgi, Cookie, os, sqlite3
 

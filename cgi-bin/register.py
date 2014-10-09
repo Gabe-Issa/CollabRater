@@ -21,10 +21,19 @@ conn = sqlite3.connect('users.db')
 c = conn.cursor()
 
 try:
-    c.execute('insert into users values(?,?);', (username, password)))
+    c.execute('insert into users values(?,?,?);', (username, password, sessionID)))
     conn.commit()
 except sqlite3.IntegrityError:
-    pass
+    print "Content-type: text/html"
+	# don't forget the extra newline!
+	print
+	print "<html>"
+	print "<head><title>CollabRater</title></head>"
+	print "<body>"
+	print "<p>Username already exists!</p>
+	print <a href="../form.html">Try a different username.</a>
+	print "</body>"
+	print "</html>"
 
 
 print "Content-type: text/html"

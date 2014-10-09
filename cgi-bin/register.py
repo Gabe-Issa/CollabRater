@@ -14,8 +14,8 @@ import sqlite3
 
 form = cgi.FieldStorage()
 
-name = form['my_name'].value
-age = form['my_age'].value
+name = form['username'].value
+age = form['password'].value
 
 conn = sqlite3.connect('people.db')
 c = conn.cursor()

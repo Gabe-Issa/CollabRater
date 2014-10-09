@@ -17,11 +17,11 @@ form = cgi.FieldStorage()
 name = form['username'].value
 age = form['password'].value
 
-conn = sqlite3.connect('people.db')
+conn = sqlite3.connect('users.db')
 c = conn.cursor()
 
 try:
-    c.execute('insert into users values(?,?);', (name, int(age)))
+    c.execute('insert into users values(?,?);', (username, password)))
     conn.commit()
 except sqlite3.IntegrityError:
     pass
@@ -36,13 +36,8 @@ print "<head><title>My webpage</title></head>"
 print "<body>"
 print "<h1>Hello world</h1>"
 print "<h2>The time is: " + str(datetime.datetime.now()) + "</h2>"
-print "<h2>Your name is: " + name + "</h2>"
-print "<h2>Your age is: " + age + "</h2>"
-print "<pre>"
+print "<h2>Your name is: " + username + "</h2>"
+print "<h2>Your password is: " + password + "</h2>"
 
-for row in c.execute('select * from users where age > 10 order by age'):
-    print 'Name:', row[0], '| Age:', row[1]
-
-print "</pre>"
 print "</body>"
 print "</html>"

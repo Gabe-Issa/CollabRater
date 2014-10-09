@@ -22,7 +22,7 @@ conn = sqlite3.connect('users.db')
 c = conn.cursor()
 
 try:
-    c.execute('insert into users values(?,?);', (username, password)))
+    c.execute('insert into users values(?,?);', (username, password, NULL)))
     conn.commit()
 except sqlite3.IntegrityError:
     print "Content-type: text/html"

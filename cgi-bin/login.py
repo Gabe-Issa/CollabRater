@@ -8,14 +8,14 @@ import cgi, Cookie, os, sqlite3
 import cgitb
 cgitb.enable()
 
-conn = sqlite3.connect('accounts.db')
+conn = sqlite3.connect('users.db')
 c = conn.cursor()
 
 
 cookie_string = os.environ.get('HTTP_COOKIE')
 if cookie_string:
     my_cookie = Cookie.SimpleCookie(cookie_string)
-    saved_session_id = my_cookie['session_id'].value
+    saved_session_id = my_cookie['sessionID'].value
 
     c.execute('select * from users where sessionID=?', (saved_session_id,))
     all_results = c.fetchall()
@@ -39,10 +39,10 @@ if cookie_string:
 
 else:
     form = cgi.FieldStorage()
-    my_name = form['my_name'].value
+    username = form['username'].value
     
     # check whether my_name is in accounts.db
-    c.execute('select * from users where name=?;', (my_name,))
+    c.execute('select * from users where username=?;', (username,))
     all_results = c.fetchall()
     if len(all_results) > 0:
         import uuid
@@ -53,15 +53,15 @@ else:
         conn.commit()
 
         cook = Cookie.SimpleCookie()
-        cook['session_id'] = session_id
+        cook['sessionID'] = sessionID
 
         print "Content-type: text/html"
         print cook
         print # don't forget newline
         print "<html>"
         print "<body>"
-        print "<h1>Hello, " + my_name +". You're now logged in.</h1>"
-        print "<h2>session_id: " + session_id + "</h2>"
+        print "<h1>Hello, " + username +". You're now logged in.</h1>"
+        print "<h2>sessionID: " + sessionID + "</h2>"
         print "</body>"
         print "</html>"
     else:

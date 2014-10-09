@@ -1,4 +1,4 @@
-!/usr/bin/python
+#!/usr/bin/python
 
 # Daniel Harris, Gabe Issa, Ethan Lipkind - CSC 210
 

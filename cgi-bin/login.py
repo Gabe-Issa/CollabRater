@@ -42,14 +42,14 @@ else:
     username = form['username'].value
     
     # check whether my_name is in accounts.db
-    c.execute('select * from users where username=?;', (username,))
+    c.execute('select * from users where username=?;', (username))
     all_results = c.fetchall()
     if len(all_results) > 0:
         import uuid
         session_id = str(uuid.uuid4())
 
         c.execute('update users set sessionID=? where name=?',
-                  (session_id, my_name))
+                  (sessionID, username))
         conn.commit()
 
         cook = Cookie.SimpleCookie()
@@ -69,6 +69,7 @@ else:
         print # don't forget newline
         print "<html>"
         print "<body>"
-        print "<h1>Sorry unregistered user</h1>"
+        print "<p>Sorry, incorrect username/password combination.  Please try again.</p>"
+        print "<a href=\"form.html\">Or, register here.</a>"
         print "</body>"
         print "</html>"

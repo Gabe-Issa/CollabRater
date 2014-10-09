@@ -16,13 +16,13 @@ form = cgi.FieldStorage()
 
 username = form['username'].value
 password = form['password'].value
-sessionID = form['sessionID'].value
+
 
 conn = sqlite3.connect('users.db')
 c = conn.cursor()
 
 try:
-    c.execute('insert into users values(?,?,?);', (username, password, sessionID)))
+    c.execute('insert into users values(?,?);', (username, password)))
     conn.commit()
 except sqlite3.IntegrityError:
     print "Content-type: text/html"
@@ -35,6 +35,7 @@ except sqlite3.IntegrityError:
 	print <a href="../form.html">Try a different username.</a>
 	print "</body>"
 	print "</html>"
+	pass
 
 
 print "Content-type: text/html"

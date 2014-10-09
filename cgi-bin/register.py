@@ -22,7 +22,7 @@ conn = sqlite3.connect('users.db')
 c = conn.cursor()
 
 try:
-    c.execute('insert into users values(?,?);', (username, password, NULL)))
+    c.execute('insert into users values(?,?);', (username, password, null)))
     conn.commit()
 except sqlite3.IntegrityError:
     print "Content-type: text/html"
@@ -35,20 +35,18 @@ except sqlite3.IntegrityError:
 	print <a href="../form.html">Try a different username.</a>
 	print "</body>"
 	print "</html>"
-	pass
-
 
 print "Content-type: text/html"
 # don't forget the extra newline!
 print
 
 print "<html>"
-print "<head><title>My webpage</title></head>"
+print "<head><title>CollabRater</title></head>"
 print "<body>"
-print "<h1>Hello world</h1>"
-print "<h2>The time is: " + str(datetime.datetime.now()) + "</h2>"
-print "<h2>Your name is: " + username + "</h2>"
-print "<h2>Your password is: " + password + "</h2>"
+print "<h1>Welcome!</h1>"
+print "<h2>Log-in time: " + str(datetime.datetime.now()) + "</h2>"
+print "<p>Your name is: " + username + "</p>"
+print "<p>Your password is: " + password + "</p>"
 
 print "</body>"
 print "</html>"

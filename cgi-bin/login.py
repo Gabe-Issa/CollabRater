@@ -8,24 +8,23 @@ import cgi, Cookie, os, sqlite3
 import cgitb
 cgitb.enable()
 
-conn = sqlite3.connect('users.db')
+conn = sqlite3.connect('accounts.db')
 c = conn.cursor()
 
 
 cookie_string = os.environ.get('HTTP_COOKIE')
 if cookie_string:
     my_cookie = Cookie.SimpleCookie(cookie_string)
-    saved_session_id = my_cookie['sessionID'].value
+    saved_session_id = my_cookie['session_id'].value
 
     c.execute('select * from users where sessionID=?', (saved_session_id,))
     all_results = c.fetchall()
     if len(all_results) > 0:
-        saved_name = all_results[0][0]
         print "Content-type: text/html"
         print # don't forget newline
         print "<html>"
         print "<body>"
-        print "<h1>Welcome back " + saved_name + "</h1>"
+        print "<h1>Welcome back " + all_results[0][0] + "</h1>"
         print "</body>"
         print "</html>"
     else:
@@ -39,29 +38,31 @@ if cookie_string:
 
 else:
     form = cgi.FieldStorage()
-    username = form['username'].value
+    usrname = form['user_name'].value
+    password = form['pass_word'].value
     
     # check whether my_name is in accounts.db
-    c.execute('select * from users where username=?;', (username))
+    c.execute('select * from users where username=? and password=?;', (usrname,password))
     all_results = c.fetchall()
     if len(all_results) > 0:
+
         import uuid
         session_id = str(uuid.uuid4())
 
-        c.execute('update users set sessionID=? where name=?',
-                  (sessionID, username))
+        c.execute('update users set sessionID=? where username=?',
+                  (session_id, usrname))
         conn.commit()
 
         cook = Cookie.SimpleCookie()
-        cook['sessionID'] = sessionID
+        cook['session_id'] = session_id
 
         print "Content-type: text/html"
         print cook
         print # don't forget newline
         print "<html>"
         print "<body>"
-        print "<h1>Hello, " + username +". You're now logged in.</h1>"
-        print "<h2>sessionID: " + sessionID + "</h2>"
+        print "<h1>Hello, " + usrname +". You're now logged in.</h1>"
+        print "<h2>session_id: " + session_id + "</h2>"
         print "</body>"
         print "</html>"
     else:
@@ -69,7 +70,7 @@ else:
         print # don't forget newline
         print "<html>"
         print "<body>"
-        print "<p>Sorry, incorrect username/password combination.  Please try again.</p>"
-        print "<a href=\"form.html\">Or, register here.</a>"
+        print "<h1>Sorry unregistered user</h1>"
+	print "<p><a href='../index.html'>Return To Main Page</a></p>"
         print "</body>"
         print "</html>"

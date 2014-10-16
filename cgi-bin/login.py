@@ -56,6 +56,9 @@ else:
         cook = Cookie.SimpleCookie()
         cook['session_id'] = session_id
 
+        #cookie expires after one hour
+        cook['session_id']['max-age'] = 3600 
+
         print "Content-type: text/html"
         print cook
         print # don't forget newline

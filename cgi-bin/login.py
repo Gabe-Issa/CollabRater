@@ -66,6 +66,7 @@ else:
         print "<body>"
         print "<h1>Hello, " + usrname +". You're now logged in.</h1>"
         print "<h2>session_id: " + session_id + "</h2>"
+        print "<a href = '../home.html'>Go Home</a>"
         print "</body>"
         print "</html>"
     else:

@@ -25,6 +25,7 @@ if cookie_string:
         print "<html>"
         print "<body>"
         print "<h1>Welcome back " + all_results[0][0] + "</h1>"
+        print "<a href = '../home.html'>Go Home</a>"
         print "</body>"
         print "</html>"
     else:

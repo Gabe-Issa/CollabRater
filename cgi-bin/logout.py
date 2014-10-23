@@ -25,12 +25,10 @@ my_cookie['session_id']['expires']='Thu, 01 Jan 1970 00:00:00 GMT'
 
 print "Content-type: text/html"
 print my_cookie
-print "Location:        http://elipkind.rochestercs.org/"
+print "Location:        ../login.html"
 print # don't forget newline
 print "<html>"
 print "<body>"
-print "<h1>Logged Out</h1>"
-print "<p><a href='../index.html'>Return To Main Page</a></p>"
 print "</body>"
 print "</html>"
 

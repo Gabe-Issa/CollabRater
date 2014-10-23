@@ -59,7 +59,7 @@ try:
 
 		print "<h2>Username already exists. <a href = '../register.html'>Please try another</a></h2>"
 
-		print "<h2>Or <a href='../index.html'>Log In</a></h2>"
+		print "<h2>Or <a href='../login.html'>Log In</a></h2>"
 
 		print "</body>"
 
@@ -86,7 +86,7 @@ try:
 
 		print "<h1>Account Successfully Created</h1>"
 
-		print "<h2><a href='../index.html'>Return to Log In Page</a></h2>"
+		print "<h2><a href='../login.html'>Return to Log In Page</a></h2>"
 
 		print "</body>"
 

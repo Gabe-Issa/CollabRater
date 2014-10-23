@@ -76,6 +76,6 @@ else:
         print "<html>"
         print "<body>"
         print "<h1>Sorry unregistered user</h1>"
-	print "<p><a href='../index.html'>Return To Main Page</a></p>"
+	print "<p><a href='../login.html'>Return To Main Page</a></p>"
         print "</body>"
         print "</html>"

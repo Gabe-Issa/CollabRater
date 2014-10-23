@@ -25,7 +25,7 @@ if cookie_string:
         print "<html>"
         print "<body>"
         print "<h1>Welcome back " + all_results[0][0] + "</h1>"
-        print "<a href = '../home.html'>Go Home</a>"
+	print "<a href = '../home.html'>Go Home</a>"
         print "</body>"
         print "</html>"
     else:
@@ -56,18 +56,18 @@ else:
 
         cook = Cookie.SimpleCookie()
         cook['session_id'] = session_id
-
-        #cookie expires after one hour
-        cook['session_id']['max-age'] = 3600 
+ 	#cookie expires after one hour
+        cook['session_id']['max-age'] = 3600
 
         print "Content-type: text/html"
         print cook
+	print "Location:        ../home.html"
         print # don't forget newline
         print "<html>"
         print "<body>"
         print "<h1>Hello, " + usrname +". You're now logged in.</h1>"
         print "<h2>session_id: " + session_id + "</h2>"
-        print "<a href = '../home.html'>Go Home</a>"
+	print "<a href = '../home.html'>Go Home</a>"
         print "</body>"
         print "</html>"
     else:

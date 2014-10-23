@@ -15,7 +15,7 @@ import os
 cookie_string = os.environ.get('HTTP_COOKIE')
 if cookie_string:
     print "Content-type: text/html"
-	print "Location:        ../home.html"
+	print "Location:        http://elipkind.rochestercs.org/home.html"
 	print # don't forget newline
 	print "<html>"
 	print "<body>"
@@ -23,7 +23,7 @@ if cookie_string:
 	print "</html>"
 else:
 	print "Content-type: text/html"
-	print "Location:        ../login.html"
+	print "Location:        http://elipkind.rochestercs.org/login.html"
 	print # don't forget newline
 	print "<html>"
 	print "<body>"

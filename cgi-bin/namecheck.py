@@ -11,15 +11,26 @@ cgitb.enable()
 
 form = cgi.FieldStorage()
 
-username = form['username'].value
+# this is what the user typed in
+usrname = form['#username'].value
 
 conn = sqlite3.connect('accounts.db')
 c = conn.cursor()
 
 try:
-	//I want to pass username as a parameter from the input form on register.html
-	c.execute('select * from table where name = 'username')
-	// if len>0, username already exists, need to print out a red X to the div.
-	// if len<0, username does not exist, need to print out a green checkmark.
+	#I want to pass username as a parameter from the input form on register.html
+	c.execute('select * from users where username=?;', (usrname,))
+	all_results = c.fetchall()
+	
+	if len(all_results)>0:
+		print "Content-type: text/plain"
+		print #extra line
+		#  username already exists, need to print out a red X to the div.
+		print TRUE
+	else:
+		print "Content-type: text/plain"
+		print #extra line
+		# username does not exist yet, need to print out a green checkmark.
+		print FALSE
 except sqlite3.IntegrityError:
 	pass

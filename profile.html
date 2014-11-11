@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>collabRater</title>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+  $("#name").val(localStorage['name']);
+  $("#dateofbirth").val(localStorage['dateofbirth']);
+  $("#phonenumber").val(localStorage['phonenumber']);
+  $("#email").val(localStorage['email']);
+  $("#streetaddress").val(localStorage['streetaddress']);
+  $("#apartment").val(localStorage['apartment']);
+  $("#zipcode").val(localStorage['zipcode']);
+  $("#country").val(localStorage['country']);
+  $("#education").val(localStorage['education']);
+  $("#employer").val(localStorage['employer']);
+  $("#keyInput").val(localStorage['keyy']);
+  $("#linkedin").val(localStorage['linkedin']);
+
+  // every time you type, it will save into localStorage
+  $("#name").on('input', function() {
+    localStorage['name'] = $("#name").val();
+  })
+  $("#dateofbirth").on('input', function() {
+    localStorage['dateofbirth'] = $("#dateofbirth").val();
+  })
+  $("#phonenumber").on('input', function() {
+    localStorage['phonenumber'] = $("#phonenumber").val();
+  })
+  $("#email").on('input', function() {
+    localStorage['email'] = $("#email").val();
+  })
+  $("#streetaddress").on('input', function() {
+    localStorage['streetaddress'] = $("#streetaddress").val();
+  })
+  $("#apartment").on('input', function() {
+    localStorage['apartment'] = $("#apartment").val();
+  })
+  $("#zipcode").on('input', function() {
+    localStorage['zipcode'] = $("#zipcode").val();
+  })
+  $("#country").on('input', function() {
+    localStorage['country'] = $("#country").val();
+  })
+  $("#education").on('input', function() {
+    localStorage['education'] = $("#education").val();
+  })
+  $("#employer").on('input', function() {
+    localStorage['employer'] = $("#employer").val();
+  })
+  $("#linkedin").on('input', function() {
+    localStorage['linkedin'] = $("#linkedin").val();
+  })
+
+  $("#localStoreButton").click(function() {
+    console.log("clicked!");
+    var k = $("#keyInput").val();
+    var v = $("#valueInput").val();
+    localStorage[k] = v;
+  });
+});
+
+</script>
+</head>
+
+<body>
+
+<h1>Profile</h1>
+
+<label>Name</label>: <input type="text" id="name"/>
+<br/>
+<label>Date Of Birth:</label> <input type="text" id="dateofbirth"/>
+<br/>
+<label>Phone Number</label>: <input type="text" id="phonenumber"/>
+<br/>
+<label>Email:</label> <input type="text" id="email"/>
+<br/>
+<label>Street Address:</label> <input type="text" id="streetaddress"/>
+<br/>
+<label>Apartment Number(optional):</label> <input type="text" id="apartment number"/>
+<br/>
+<label>City:</label> <input type="text" id="city"/>
+<label>State:</label> <input type="text" id="state"/>
+<label>Zip Code:</label> <input type="text" id="zipcode"/>
+
+<br/>
+<label>Country:</label> <input type="text" id="country"/>
+<br/>
+<label>Highest Level of Education</label> <input type="text" id="education"/>
+<br/>
+<label>Current Employer(if any)</label> <input type="text" id="employer"/>
+<br/>
+<label>LinkedIn Profile URL</label> <input type="text" id="linkedin"/>
+<br/>
+<button id="profileSave">Save Profile</button>
+
+</body>
+</html>

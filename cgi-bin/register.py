@@ -67,7 +67,7 @@ try:
 
 	else:
 	
-		c.execute('insert into users values(?,?,null);', (usrname, password))
+		c.execute('insert into users values(?,?,null,0);', (usrname, password))
 		conn.commit()
 
 		print "Content-type: text/html"

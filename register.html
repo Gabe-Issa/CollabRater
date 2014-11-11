@@ -14,10 +14,10 @@
 				dataType: "text",
 				success: function(dat){
 					if dat == "TRUE":
-						$("#checkmark").src = "redX.png"
+						$("#checkmark").src = "public_html/redX.png"
 						// display red "X"
 					else:
-						$("#checkmark").src = "greencheck.png"
+						$("#checkmark").src = "public_html/greencheck.png"
 						// display green "check mark"
 				}
 			})
@@ -36,7 +36,7 @@
 
 
 <label>Username:</label> <input id = "username" name="user_name" type=text size="30"/>
-<img id = "checkmark"></img>
+<img id = "checkmark" height="42" width="42"></img>
 
 <br/>
 

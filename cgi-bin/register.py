@@ -29,69 +29,132 @@ usrname = form['user_name'].value
 
 password = form['pass_word'].value
 
+adminpassword = form['admin_password'].value
+
 session_id = str(uuid.uuid4())
 
 conn = sqlite3.connect('accounts.db')
 c = conn.cursor()
+if adminpassword = 'admin':
+	try:
+		c.execute('select * from users where username=?;', (usrname,))
+		all_results = c.fetchall()
 
-try:
-	c.execute('select * from users where username=?;', (usrname,))
-	all_results = c.fetchall()
+		if len(all_results) > 0:
+			
+			
+			print "Content-type: text/html"
 
-	if len(all_results) > 0:
+			# don't forget the extra newline!
+
+			print
+
+
+
+			print "<html>"
+
+			print "<head><title>CollabRater</title></head>"
+
+			print "<body>"
+
+			print "<h1>Error!</h1>"
+
+			print "<h2>Username already exists. <a href = '../register.html'>Please try another</a></h2>"
+
+			print "<h2>Or <a href='../login.html'>Log In</a></h2>"
+
+			print "</body>"
+
+			print "</html>"
+
+		else:
 		
+			c.execute('insert into users values(?,?,null,1);', (usrname, password))
+			conn.commit()
+
+			print "Content-type: text/html"
+
+			# don't forget the extra newline!
+
+			print
+
+
+
+			print "<html>"
+
+			print "<head><title>CollabRater</title></head>"
+
+			print "<body>"
+
+			print "<h1>Account Successfully Created with Admin Privileges</h1>"
+
+			print "<h2><a href='../login.html'>Return to Log In Page</a></h2>"
+
+			print "</body>"
+
+			print "</html>"
+
+	except sqlite3.IntegrityError:
+	    pass
+else:
+	try:
+		c.execute('select * from users where username=?;', (usrname,))
+		all_results = c.fetchall()
+
+		if len(all_results) > 0:
+			
+			
+			print "Content-type: text/html"
+
+			# don't forget the extra newline!
+
+			print
+
+
+
+			print "<html>"
+
+			print "<head><title>CollabRater</title></head>"
+
+			print "<body>"
+
+			print "<h1>Error!</h1>"
+
+			print "<h2>Username already exists. <a href = '../register.html'>Please try another</a></h2>"
+
+			print "<h2>Or <a href='../login.html'>Log In</a></h2>"
+
+			print "</body>"
+
+			print "</html>"
+
+		else:
 		
-		print "Content-type: text/html"
+			c.execute('insert into users values(?,?,null,0);', (usrname, password))
+			conn.commit()
 
-		# don't forget the extra newline!
+			print "Content-type: text/html"
 
-		print
+			# don't forget the extra newline!
 
-
-
-		print "<html>"
-
-		print "<head><title>CollabRater</title></head>"
-
-		print "<body>"
-
-		print "<h1>Error!</h1>"
-
-		print "<h2>Username already exists. <a href = '../register.html'>Please try another</a></h2>"
-
-		print "<h2>Or <a href='../login.html'>Log In</a></h2>"
-
-		print "</body>"
-
-		print "</html>"
-
-	else:
-	
-		c.execute('insert into users values(?,?,null,0);', (usrname, password))
-		conn.commit()
-
-		print "Content-type: text/html"
-
-		# don't forget the extra newline!
-
-		print
+			print
 
 
 
-		print "<html>"
+			print "<html>"
 
-		print "<head><title>CollabRater</title></head>"
+			print "<head><title>CollabRater</title></head>"
 
-		print "<body>"
+			print "<body>"
 
-		print "<h1>Account Successfully Created</h1>"
+			print "<h1>Account Successfully Created</h1>"
 
-		print "<h2><a href='../login.html'>Return to Log In Page</a></h2>"
+			print "<h2><a href='../login.html'>Return to Log In Page</a></h2>"
 
-		print "</body>"
+			print "</body>"
 
-		print "</html>"
+			print "</html>"
 
-except sqlite3.IntegrityError:
-    pass
+	except sqlite3.IntegrityError:
+	    pass
 

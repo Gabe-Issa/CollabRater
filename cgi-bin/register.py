@@ -35,7 +35,7 @@ session_id = str(uuid.uuid4())
 
 conn = sqlite3.connect('accounts.db')
 c = conn.cursor()
-if adminpassword = 'admin':
+if adminpassword == 'admin':
 	try:
 		c.execute('select * from users where username=?;', (usrname,))
 		all_results = c.fetchall()

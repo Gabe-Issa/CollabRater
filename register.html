@@ -13,9 +13,11 @@
 				type: "GET",
 				dataType: "text",
 				success: function(dat){
-					if dat == "TRUE":	
+					if dat == "TRUE":
+						$("#checkmark").src = "redX.png"
 						// display red "X"
 					else:
+						$("#checkmark").src = "greencheck.png"
 						// display green "check mark"
 				}
 			})
@@ -34,7 +36,7 @@
 
 
 <label>Username:</label> <input id = "username" name="user_name" type=text size="30"/>
-<div id = "checkmark">If username already exists, I am a red X.  If it does not yet exist, I am a green check mark.</div>
+<img id = "checkmark"></img>
 
 <br/>
 

@@ -2,6 +2,16 @@
 
 <head><title>My form</title></head>
 
+	<script type="text/javascript">
+	$(document).ready(function(){
+		$("#username").on('input', function(){
+			// call another python script to check the input against the existing usernames in the database, 
+			// print out a red X if username already exists, print out a green check mark if username does not yet exist.
+			
+		})
+	})
+	</script>
+
 <body>
 
 <h1>Please enter your info:</h1>
@@ -12,7 +22,7 @@
 
 
 
-<label>Username:</label> <input name="user_name" type=text size="30"/>
+<label>Username:</label> <input id = "username" name="user_name" type=text size="30"/>
 
 <br/>
 

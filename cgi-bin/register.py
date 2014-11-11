@@ -1,40 +1,26 @@
 #!/usr/bin/python
-
-
-
 # Daniel Harris, Gabe Issa, Ethan Lipkind
-
-
 import cgi
-
 import datetime
-
-
-
-# to facilitate debugging
-
 import cgitb
-
 cgitb.enable()
-
 import sqlite3
-
 import os
-
 import uuid
 
 form = cgi.FieldStorage()
-
 usrname = form['user_name'].value
-
 password = form['pass_word'].value
-
-adminpassword = form['admin_password'].value
-
 session_id = str(uuid.uuid4())
 
 conn = sqlite3.connect('accounts.db')
 c = conn.cursor()
+
+if form['admin_password'].value == '':
+	adminpassword = 'notadmin'
+else:
+	adminpassword = form['admin_password'].value
+
 if adminpassword == 'admin':
 	try:
 		c.execute('select * from users where username=?;', (usrname,))

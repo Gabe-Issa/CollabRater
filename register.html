@@ -10,13 +10,13 @@
 			// or print out a green check mark if username does not yet exist.
 			$.ajax({
 				url: "cgi-bin/namecheck.py",
-				type: "POST",
-				data: {
-					username: $("#username").val()
-				},
+				type: "GET",
 				dataType: "text",
-				success: function(){
-					$("#checkmark").draw(); // draw the correct shape to the checkmark div.
+				success: function(dat){
+					if dat == "TRUE":	
+						// display red "X"
+					else:
+						// display green "check mark"
 				}
 			})
 		})

@@ -16,10 +16,10 @@ session_id = str(uuid.uuid4())
 conn = sqlite3.connect('accounts.db')
 c = conn.cursor()
 
-if form['admin_password'].value == '':
-	adminpassword = 'notadmin'
-else:
+try:
 	adminpassword = form['admin_password'].value
+except KeyError:
+	adminpassword = 'notadmin'
 
 if adminpassword == 'admin':
 	try:

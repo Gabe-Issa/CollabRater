@@ -16,10 +16,10 @@
 	<script>
 
 	// this doesn't work yet
-		cookie_string = document.cookie;
+		/*cookie_string = document.cookie;
 		if(!cookie_string){
 			window.location = 'http://elipkind.rochestercs.org'
-		}
+		}*/
 	</script>
 
 	<body>
@@ -27,7 +27,6 @@
 		<h1>CollabRater</h1>
 
 		
-
 		<form method="post" action="cgi-bin/logout.py">
 
 
@@ -41,6 +40,16 @@
 		<a href="profile.html">Edit your profile</a>
 
 
+		<form method="post" action="cgi-bin/viewprofile.py">
+
+		<br>
+
+		<label>Enter a valid username to view a profile: </label> <input name="user_name" type=text size="30"/>
+
+
+		<input type="submit" value ="Search"/>
+
+		</form>
 
 		
 

@@ -4,15 +4,17 @@
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
+		console.log("hello!");
 		$("#username").on('input', function(){
 			// every time user alters state of the username input field, call namecheck.py to check the input 
 			// against the existing usernames in the database, then print out a red X if username already exists,
 			// or print out a green check mark if username does not yet exist.
-			$.ajax({
+			$.ajax(
+			{
 				url: "cgi-bin/namecheck.py",
 				type: "GET",
 				dataType: "json",
-				success: function(dat){
+				success: function(dat) {
 					console.dir(dat);
 					if (dat.result = "TRUE"){
 						$("#checkmark").src = "../images/redX.png";
@@ -22,10 +24,10 @@
 						$("#checkmark").src = "../images/greencheck.png";
 						// display green "check mark"
 					}
-				}
-			})
-		})
-	})
+				},
+			});
+		});
+	});
 	</script>
 
 <body>

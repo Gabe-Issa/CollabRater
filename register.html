@@ -1,7 +1,7 @@
 <html>
 
 <head><title>My form</title></head>
-
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
 		$("#username").on('input', function(){
@@ -14,7 +14,7 @@
 				dataType: "json",
 				success: function(dat){
 					console.dir(dat);
-					if dat.result = "TRUE"{
+					if (dat.result = "TRUE"){
 						$("#checkmark").src = "../images/redX.png";
 						// display red "X"
 					}

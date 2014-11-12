@@ -1,38 +1,36 @@
 <html>
-
-<head><title>My form</title></head>
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function(){
-		console.log("hello!");
-		$("#username").on('input', function(){
-			// every time user alters state of the username input field, call namecheck.py to check the input 
-			// against the existing usernames in the database, then print out a red X if username already exists,
-			// or print out a green check mark if username does not yet exist.
-			$.ajax(
-			{
-				url: "cgi-bin/namecheck.py",
-				type: "GET",
-				dataType: "json",
-				success: function(dat) {
-					console.dir(dat);
-					if (dat.result = "TRUE"){
-						$("#checkmark").src = "../images/redX.png";
-						// display red "X"
-					}
-					else{
-						$("#checkmark").src = "../images/greencheck.png";
-						// display green "check mark"
-					}
-				},
-			});
+<head>
+<title>My form</title>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+	
+$(document).ready(function(){
+	console.log("hello!");
+	$("#CheckUsername").click(function(){
+		$.ajax(
+		{
+			url: "cgi-bin/namecheck.py",
+			type: "POST",
+			data: {
+				stuff: $("#stuffInput").val()
+			},
+			dataType: "text",
+			success: function(dat) {
+				$("fileContents").html(dat);
+			},
 		});
 	});
-	</script>
-
+});
+</script>
+</head>
 <body>
 
 <h1>Please enter your info:</h1>
+
+<input type="text" id="stuffInput"/>
+<button if="CheckUsername">Check Username!</button>
+
+<pre id="fileContents"></pre>
 
 
 
@@ -40,9 +38,7 @@
 
 
 
-<label>Username:</label> <input id = "username" name="user_name" type=text size="30"/>
-<img id = "checkmark" height="42" width="42"></img>
-
+<label>Username:</label> <input name="user_name" type=text size="30"/>
 <br/>
 
 <label>Password:&nbsp</label> <input name="pass_word" type=password size="30"/>

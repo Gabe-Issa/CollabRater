@@ -13,12 +13,15 @@
 				type: "GET",
 				dataType: "json",
 				success: function(dat){
-					if dat.result == 'TRUE':
-						$("#checkmark").src = "../images/redX.png"
+					console.dir(dat);
+					if dat.result = "TRUE"{
+						$("#checkmark").src = "../images/redX.png";
 						// display red "X"
-					else:
-						$("#checkmark").src = "../images/greencheck.png"
+					}
+					else{
+						$("#checkmark").src = "../images/greencheck.png";
 						// display green "check mark"
+					}
 				}
 			})
 		})

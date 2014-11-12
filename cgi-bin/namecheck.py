@@ -23,14 +23,14 @@ try:
 	all_results = c.fetchall()
 	
 	if len(all_results)>0:
-		print "Content-type: text/plain"
+		print "Content-type: application/json"
 		print #extra line
 		#  username already exists, need to print out a red X to the div.
-		print TRUE
+		print '{"result": "TRUE"}'
 	else:
 		print "Content-type: text/plain"
 		print #extra line
 		# username does not exist yet, need to print out a green checkmark.
-		print FALSE
+		print '{"result": "FALSE"}'
 except sqlite3.IntegrityError:
 	pass

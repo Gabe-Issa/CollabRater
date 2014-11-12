@@ -11,9 +11,9 @@
 			$.ajax({
 				url: "cgi-bin/namecheck.py",
 				type: "GET",
-				dataType: "text",
+				dataType: "json",
 				success: function(dat){
-					if dat == "TRUE":
+					if dat == 'TRUE':
 						$("#checkmark").src = "../images/redX.png"
 						// display red "X"
 					else:

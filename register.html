@@ -23,7 +23,7 @@ $(document).ready(function() {
         dataType: "json",
         success: function(dat) {
           console.dir(dat);
-          $("#stuff").append('<li>' + dat.name + '</li>');
+          $("#stuff").text(dat.name);
         },
       }
     );

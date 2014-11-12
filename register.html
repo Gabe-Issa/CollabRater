@@ -13,7 +13,7 @@
 				type: "GET",
 				dataType: "json",
 				success: function(dat){
-					if dat == 'TRUE':
+					if dat.result == 'TRUE':
 						$("#checkmark").src = "../images/redX.png"
 						// display red "X"
 					else:

@@ -35,18 +35,18 @@ if cookie_string:
 
 	try:
 		
-		c.execute('select * from users where sessionID=?;', (saved_session_id,))
+		c.execute('select * from users where sessionID=?', (saved_session_id,))
 		all_results = c.fetchall()
 		usr = all_results[0][0]
 		
-		c.execute('select * from profiles where username=?;', (usr,))
+		c.execute('select * from profiles where username=?', (usr,))
 		all_results = c.fetchall()
 
 		if len(all_results) > 0:
 			
 			#delete existing and start over again
 			
-			c.execute('delete from profiles where username=?;',(usr,))
+			c.execute('delete from profiles where username=?',(usr,))
 			
 			c.execute('insert into profiles values(?,?,?,?,?,?,?,?,?,?,?,?,?,?);', (usr,name, dob,pn,email,sa,an,city,state,zc,country,hloe,ce,linked))
 			conn.commit()
@@ -55,7 +55,7 @@ if cookie_string:
 
 		else:
 		
-			c.execute('insert into profiles values(?,?,?,?,?,?,?,?,?,?,?,?,?,?);', (usr,name, dob,pn,email,sa,an,city,state,zc,country,hloe,ce,linked))
+			c.execute('insert into profiles values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)', (usr,name, dob,pn,email,sa,an,city,state,zc,country,hloe,ce,linked))
 			conn.commit()
 
 			

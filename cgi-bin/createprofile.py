@@ -10,56 +10,56 @@ import uuid
 
 form = cgi.FieldStorage()
 
-name = form['user_name'].value
-dob = form['user_name'].value
-pn = form['user_name'].value
-email = form['user_name'].value
-sa = form['user_name'].value
-an = form['user_name'].value
-city = form['user_name'].value
-state = form['user_name'].value
-zc = form['user_name'].value
-country = form['user_name'].value
-hloe = form['user_name'].value
-ce = form['user_name'].value
-linked = form['user_name'].value
+name = form['name'].value
+dob = form['dateofbirth'].value
+pn = form['phonenumber'].value
+email = form['email'].value
+sa = form['streetaddress'].value
+an = form['apartment'].value
+city = form['city'].value
+state = form['state'].value
+zc = form['zipcode'].value
+country = form['country'].value
+hloe = form['education'].value
+ce = form['employer'].value
+linked = form['linkedin'].value
 
 cookie_string = os.environ.get('HTTP_COOKIE')
 
-conn = sqlite3.connect('accounts.db')
-c = conn.cursor()
+if cookie_string:
+	my_cookie = Cookie.SimpleCookie(cookie_string)
+    saved_session_id = my_cookie['session_id'].value
+
+	conn = sqlite3.connect('accounts.db')
+	c = conn.cursor()
 
 	try:
-
-
 		
-		c.execute('select * from profiles where name=?;', (name,))
+		c.execute('select * from users where sessionID=?;', (saved_session_id,))
+		all_results = c.fetchall()
+		usr = all_results[0][0]
+		
+		c.execute('select * from profiles where username=?;', (usr,))
+		all_results = c.fetchall()
 
 		if len(all_results) > 0:
 			
-			username = all_results[0][0]
-			
 			#delete existing and start over again
 			
-			c.execute('delete from profiles where username=?;',(username,))
+			c.execute('delete from profiles where username=?;',(usr,))
 			
-			c.execute('insert into profiles values(?,?,?,?,?,?,?,?,?,?,?,?,?,?);', (username,name, dob,pn,email,sa,an,city,state,zc,country,hloe,ce,linked))
+			c.execute('insert into profiles values(?,?,?,?,?,?,?,?,?,?,?,?,?,?);', (usr,name, dob,pn,email,sa,an,city,state,zc,country,hloe,ce,linked))
 			conn.commit()
 			
 			
 
 		else:
 		
-			c.execute('select * from users where sessionid=?;', (cookie_string,))
-			all_results = c.fetchall()
-		
-			username = all_results[0][0]
-		
-			c.execute('insert into profiles values(?,?,?,?,?,?,?,?,?,?,?,?,?,?);', (username,name, dob,pn,email,sa,an,city,state,zc,country,hloe,ce,linked))
+			c.execute('insert into profiles values(?,?,?,?,?,?,?,?,?,?,?,?,?,?);', (usr,name, dob,pn,email,sa,an,city,state,zc,country,hloe,ce,linked))
 			conn.commit()
 
 			
 
 	except sqlite3.IntegrityError:
-	    pass
+		pass
 

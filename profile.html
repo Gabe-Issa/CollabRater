@@ -69,6 +69,8 @@ $(document).ready(function() {
 
 <h1>Profile</h1>
 
+<form method="post" action="cgi-bin/createprofile.py">
+
 <label>Name</label>: <input type="text" id="name"/>
 <br/>
 <label>Date Of Birth:</label> <input type="text" id="dateofbirth"/>
@@ -94,7 +96,9 @@ $(document).ready(function() {
 <br/>
 <label>LinkedIn Profile URL</label> <input type="text" id="linkedin"/>
 <br/>
-<button id="profileSave">Save Profile</button>
+<button value = "save" id="profileSave">Save Profile</button>
+
+</form>
 
 </body>
 </html>

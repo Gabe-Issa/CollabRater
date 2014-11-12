@@ -1,38 +1,47 @@
 <html>
 <head>
-<title>My form</title>
+<title>CollabRater</title>
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
-	
-$(document).ready(function(){
-	console.log("hello!");
-	$("#CheckUsername").click(function(){
-		$.ajax(
-		{
-			url: "cgi-bin/namecheck.py",
-			type: "POST",
-			data: {
-				stuff: $("#stuffInput").val()
-			},
-			dataType: "text",
-			success: function(dat) {
-				$("fileContents").html(dat);
-			},
-		});
-	});
-});
+
+$(document).ready(function() {
+  console.log("Hello!");
+
+  $("#postStuffButton").click(function() {
+    $.ajax(
+      {
+        url: "cgi-bin/namecheck.py",
+        // post this data to the server ...
+        type: "GET",
+        // grab data from the stuffInput text box
+        data: {
+                stuff: $("#stuffInput").val()
+              },
+
+        // the script will also return data back to the browser, so
+        // handle it here ...
+        dataType: "json",
+        success: function(dat) {
+          console.dir(dat);
+          $("#stuff").append('<li>' + dat.name + '</li>');
+        },
+      }
+    );
+  });
+
+}); 
+
 </script>
 </head>
+
 <body>
 
-<h1>Please enter your info:</h1>
-
 <input type="text" id="stuffInput"/>
-<button if="CheckUsername">Check Username!</button>
+<button id="postStuffButton">Check Username!</button>
 
-<pre id="fileContents"></pre>
+<div id="stuff"></div>
 
-
+<h1>Please enter your info:</h1>
 
 <form method="post" action="cgi-bin/register.py">
 

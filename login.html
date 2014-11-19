@@ -16,9 +16,12 @@
 		<script type = "text/javascript">
 			$(document).ready(function() {
 
-				$('#password').keyup(function(){
+				$('#form').keyup(function(){
 					if($('#password').val() != "" && $('#username').val() != ""){
 						$('#submit').removeAttr('disabled');
+					}
+					else if($('#password').val() == "" || $('#username').val() == ""){
+						$('#submit').attr('disabled', 'disabled');
 					}
 				});
  			});
@@ -38,7 +41,6 @@
  			});
 		</script>
 
-
 	</head>
 
 	<body>
@@ -46,7 +48,7 @@
 		
 		<h2>Log In here:</h2>
 
-		<form method="post" action="cgi-bin/login.py">
+		<form method="post" action="cgi-bin/login.py" id = "form">
 
 
 		<label>Username:</label> <input id = "username" name="user_name" type=text size="30"/>

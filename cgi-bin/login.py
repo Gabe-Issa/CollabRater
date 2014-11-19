@@ -41,18 +41,6 @@ else:
     form = cgi.FieldStorage()
     usrname = form['user_name'].value
     password = form['pass_word'].value
-
-    # check if password field is null.
-    if not password:
-        print "Content-type: text/html"
-        print # don't forget newline
-        print "<html>"
-        print "<body>"
-        print "<h1>Sorry unregistered user</h1>"
-        print "<p><a href='../login.html'>Return To Login</a></p>"
-        print "</body>"
-        print "</html>"
-
     
     # check whether my_name is in accounts.db
     c.execute('select * from users where username=? and password=?;', (usrname,password))
@@ -73,13 +61,13 @@ else:
 
         print "Content-type: text/html"
         print cook
-	    print "Location:        ../home.html"
+	print "Location:        ../home.html"
         print # don't forget newline
         print "<html>"
         print "<body>"
         print "<h1>Hello, " + usrname +". You're now logged in.</h1>"
         print "<h2>session_id: " + session_id + "</h2>"
-	    print "<a href = '../home.html'>Go Home</a>"
+	print "<a href = '../home.html'>Go Home</a>"
         print "</body>"
         print "</html>"
     else:
@@ -88,8 +76,6 @@ else:
         print "<html>"
         print "<body>"
         print "<h1>Sorry unregistered user</h1>"
-	    print "<p><a href='../login.html'>Return To Main Page</a></p>"
+	print "<p><a href='../login.html'>Return To Main Page</a></p>"
         print "</body>"
         print "</html>"
-
-

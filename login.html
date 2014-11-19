@@ -15,6 +15,7 @@
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script type = "text/javascript">
 			$(document).ready(function() {
+
 				$('#password').keyup(function(){
 					if($('#password').val() != "" && $('#username').val() != ""){
 						$('#submit').removeAttr('disabled');
@@ -22,6 +23,22 @@
 				});
  			});
 		</script>
+
+		<!--
+			Now a script that disables the "log in" button again if user
+			hits the reset button or deletes one of the fields.
+		!-->
+
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script type = "text/javascript">
+			$(document).ready(function() {
+				$('#reset').click(function(){
+					$('#submit').attr('disabled', 'disabled');				
+				});
+ 			});
+		</script>
+
+
 	</head>
 
 	<body>
@@ -36,10 +53,10 @@
 		<br>
 		<label>Password:&nbsp</label> <input id = "password" name="pass_word" type=password size="30"/>
 		<br>
-		<input type="submit" id = "submit" value = "Log In" disabled/> <input type="reset"/>
+		<input type="submit" id = "submit" value = "Log In" disabled = "disabled"/> <input type="reset" id = "reset"/>
 		
 		<br>
-		
+
 		<p>Don't Have An Account? <a href="register.html">Sign up here.</a></p>
 		
 	</body>

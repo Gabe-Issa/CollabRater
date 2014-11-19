@@ -8,7 +8,7 @@
 
 		<!--
 			script below checks if the password field is empty.
-			If it is empty, the "log in" button should remain disabled.
+			If it is empty, the "log in" button should be disabled.
 			If it is not empty, it should be enabled.
 		!-->
 
@@ -28,8 +28,8 @@
 		</script>
 
 		<!--
-			Now a script that disables the "log in" button again if user
-			hits the reset button or deletes one of the fields.
+			And this script disables the "log in" button again if user
+			hits the reset button.
 		!-->
 
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -58,6 +58,7 @@
 		<input type="submit" id = "submit" value = "Log In" disabled = "disabled"/> <input type="reset" id = "reset"/>
 		
 		<br>
+		<div id = "error"></div>
 
 		<p>Don't Have An Account? <a href="register.html">Sign up here.</a></p>
 		

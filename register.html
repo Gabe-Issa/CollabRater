@@ -32,6 +32,28 @@ $(document).ready(function() {
 }); 
 
 </script>
+
+<!-- 
+    below script makes the register button disabled when at least one the form fields is empty.
+    Not sure why it's not enabling though, it's exactly the same as it is for login.html ...
+!-->
+
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script type = "text/javascript">
+      $(document).ready(function() {
+
+        $('#form').keyup(function(){
+          if($('#password').val() != "" && $('#username').val() != ""){
+            $('#submit').removeAttr('disabled');
+          }
+          else if($('#password').val() == "" || $('#username').val() == ""){
+            $('#submit').attr('disabled', 'disabled');
+          }
+        });
+      });
+    </script>
+
+
 </head>
 
 <body>
@@ -43,20 +65,20 @@ $(document).ready(function() {
 
 <h1>Please enter your info:</h1>
 
-<form method="post" action="cgi-bin/register.py">
+<form method="post" action="cgi-bin/register.py" id = "form">
 
 
 
-<label>Username:</label> <input name="user_name" type=text size="30"/>
+<label>Username:</label> <input name="user_name" id = "username" type=text size="30"/>
 <br/>
 
-<label>Password:&nbsp</label> <input name="pass_word" type=password size="30"/>
+<label>Password:&nbsp</label> <input name="pass_word" id = "password" type=password size="30"/>
 
 <br/>
 
 <label>(Optional)AdminPassword:</label> <input name="admin_password" type=text size="30"/>
 <br/>
-<input type="submit" value = "Register"/>
+<input type="submit" value = "Register" disabled = "disabled"/>
 
 </form>
 

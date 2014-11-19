@@ -5,6 +5,23 @@
 	<head>
 		<meta charset="utf-8">
 		<title>CollabRator</title>
+
+		<!--
+			script below checks if the password field is empty.
+			If it is empty, the "log in" button should remain disabled.
+			If it is not empty, it should be enabled.
+		!-->
+
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script type = "text/javascript">
+			$(document).ready(function() {
+				$('#password').keyup(function(){
+					if($('#password').val() != "" && $('#username').val() != ""){
+						$('#submit').removeAttr('disabled');
+					}
+				});
+ 			});
+		</script>
 	</head>
 
 	<body>
@@ -18,9 +35,8 @@
 		<label>Username:</label> <input id = "username" name="user_name" type=text size="30"/>
 		<br>
 		<label>Password:&nbsp</label> <input id = "password" name="pass_word" type=password size="30"/>
-
 		<br>
-		<input type="submit" value = "Log In"/> <input type="reset"/>
+		<input type="submit" id = "submit" value = "Log In" disabled/> <input type="reset"/>
 		
 		<br>
 		

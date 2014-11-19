@@ -41,18 +41,6 @@ else:
     form = cgi.FieldStorage()
     usrname = form['user_name'].value
     password = form['pass_word'].value
-
-    # check if password field is null.
-    if not password:
-        print "Content-type: text/html"
-        print # don't forget newline
-        print "<html>"
-        print "<body>"
-        print "<h1>Sorry unregistered user</h1>"
-        print "<p><a href='../login.html'>Return To Login</a></p>"
-        print "</body>"
-        print "</html>"
-
     
     # check whether my_name is in accounts.db
     c.execute('select * from users where username=? and password=?;', (usrname,password))
@@ -62,8 +50,7 @@ else:
         import uuid
         session_id = str(uuid.uuid4())
 
-        c.execute('update users set sessionID=? where username=?',
-                  (session_id, usrname))
+        c.execute('update users set sessionID=? where username=?',(session_id, usrname))
         conn.commit()
 
         cook = Cookie.SimpleCookie()

@@ -48,6 +48,19 @@
 			of redirecting to login.py and printing "Sorry unregistered user".
 		!-->
 
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script type = "text/javascript">
+			$(document).ready(function(){
+				$("#submit").click(function(){
+					$.ajax(function(){
+						url: "cgi-bin/login.py"
+						type:"POST"
+						
+
+					})
+				})
+			})
+
 	</head>
 
 	<body>

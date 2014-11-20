@@ -70,7 +70,7 @@ else:
 	print "<a href = '../home.html'>Go Home</a>"
         print "</body>"
         print "</html>"
-    else: #can we return a value that gets picked up in login.html via ajax and then prints to a div rather than redirecting?
+    else:
         print "Content-type: text/html"
         print # don't forget newline
         print "<html>"

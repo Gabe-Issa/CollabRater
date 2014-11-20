@@ -42,23 +42,44 @@ $(document).ready(function() {
       $(document).ready(function() {
 
         $('#form').keyup(function(){
-          console.log("keyup");
           if($('#password').val() != "" && $('#username').val() != ""){
-            console.log("neither empty.")
             $('#submit').removeAttr('disabled');
-
-            console.log("disabled should be removed");
-            if($('#submit').attr('disabled')){
-              console.log("should be enabled.");
-            }
           }
           else if($('#password').val() == "" || $('#username').val() == ""){
             $('#submit').attr('disabled', 'disabled');
-            console.log("now disabled.");
           }
         });
       });
     </script>
+
+  <!--
+      This script will do exactly what the "check username" button does but will activate
+      on $('#username').keyup() so we don't need a check username button.
+  !-->
+
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $("#username").keyup(function(){
+        console.log($("#username").val());
+        $.ajax({
+        url: "cgi-bin/namecheck.py",
+        type: "GET",
+        data: {
+          stuff: $('#username').val()
+        },
+        dataType: "json",
+        success: function(dat){
+          console.dir(dat);
+          $("#stuff").text(dat.name);
+        },
+
+      })
+
+      });
+      
+    });
+  </script>
 
 
 </head>
@@ -85,12 +106,7 @@ $(document).ready(function() {
 
 <label>(Optional)AdminPassword:</label> <input name="admin_password" type=text size="30"/>
 <br/>
-<<<<<<< Updated upstream
-
-<input type="submit" value = "Register" disabled = "disabled"/>
-=======
 <input type="submit" id = "submit" value = "Register" disabled = "disabled"/>
->>>>>>> Stashed changes
 
 </form>
 

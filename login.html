@@ -41,6 +41,13 @@
  			});
 		</script>
 
+		<!--
+			Script here should call login.py when user clicks the "log in" button.
+			Then use ajax to check if the username/password combo is correct. If it
+			is not correct, it should print an error message to the #error div instead
+			of redirecting to login.py and printing "Sorry unregistered user".
+		!-->
+
 	</head>
 
 	<body>
@@ -56,6 +63,8 @@
 		<label>Password:&nbsp</label> <input id = "password" name="pass_word" type=password size="30"/>
 		<br>
 		<input type="submit" id = "submit" value = "Log In" disabled = "disabled"/> <input type="reset" id = "reset"/>
+
+		<div id = "error"></div>
 		
 		<br>
 		<div id = "error"></div>

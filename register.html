@@ -43,11 +43,19 @@ $(document).ready(function() {
       $(document).ready(function() {
 
         $('#form').keyup(function(){
+          console.log("keyup");
           if($('#password').val() != "" && $('#username').val() != ""){
+            console.log("neither empty.")
             $('#submit').removeAttr('disabled');
+
+            console.log("disabled should be removed");
+            if($('#submit').attr('disabled')){
+              console.log("should be enabled.");
+            }
           }
           else if($('#password').val() == "" || $('#username').val() == ""){
             $('#submit').attr('disabled', 'disabled');
+            console.log("now disabled.");
           }
         });
       });
@@ -78,6 +86,7 @@ $(document).ready(function() {
 
 <label>(Optional)AdminPassword:</label> <input name="admin_password" type=text size="30"/>
 <br/>
+
 <input type="submit" value = "Register" disabled = "disabled"/>
 
 </form>

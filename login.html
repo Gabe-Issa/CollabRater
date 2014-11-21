@@ -47,7 +47,7 @@
 			is not correct, it should print an error message to the #error div instead
 			of redirecting to login.py and printing "Sorry unregistered user".
 		!-->
-
+<!--
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script type = "text/javascript">
 			$(document).ready(function(){
@@ -60,6 +60,20 @@
 					})
 				})
 			})
+!-->
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script type = "text/javascript">
+			$(document).ready(function(){
+				$.ajax({
+					url:"cgi-bin/cookiechecker.py",
+					type: "GET",
+					dataType:"json",
+					success:function(dat){
+						console.log("success");
+					},
+				});
+			});
+		</script>
 
 	</head>
 

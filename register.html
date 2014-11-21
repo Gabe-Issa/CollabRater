@@ -4,38 +4,9 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script type="text/javascript">
 
-$(document).ready(function() {
-  console.log("Hello!");
-
-  $("#postStuffButton").click(function() {
-    $.ajax(
-      {
-        url: "cgi-bin/namecheck.py",
-        // post this data to the server ...
-        type: "GET",
-        // grab data from the stuffInput text box
-        data: {
-                stuff: $("#stuffInput").val()
-              },
-
-        // the script will also return data back to the browser, so
-        // handle it here ...
-        dataType: "json",
-        success: function(dat) {
-          console.dir(dat);
-          $("#stuff").text(dat.name);
-        },
-      }
-    );
-  });
-
-}); 
-
-</script>
-
-<!-- 
+/*
     below script makes the register button disabled when at least one the form fields is empty.
-!-->
+*/
 
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script type = "text/javascript">
@@ -53,8 +24,7 @@ $(document).ready(function() {
     </script>
 
   <!--
-      This script will do exactly what the "check username" button does but will activate
-      on $('#username').keyup() so we don't need a check username button.
+      This script does exactly what the "check username" button did, but will activate on $('#username').keyup() so we don't need a check username button.
   !-->
 
   <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -86,10 +56,7 @@ $(document).ready(function() {
 
 <body>
 
-<input type="text" id="stuffInput"/>
-<button id="postStuffButton">Check Username!</button>
 
-<div id="stuff"></div>
 
 <h1>Please enter your info:</h1>
 
@@ -98,6 +65,7 @@ $(document).ready(function() {
 
 
 <label>Username:</label> <input name="user_name" id = "username" type=text size="30"/>
+<div id="stuff"></div>
 <br/>
 
 <label>Password:&nbsp</label> <input name="pass_word" id = "password" type=password size="30"/>

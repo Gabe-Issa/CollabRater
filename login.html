@@ -47,32 +47,27 @@
 			is not correct, it should print an error message to the #error div instead
 			of redirecting to login.py and printing "Sorry unregistered user".
 		!-->
-<!--
-		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-		<script type = "text/javascript">
-			$(document).ready(function(){
-				$("#submit").click(function(){
-					$.ajax(function(){
-						url: "cgi-bin/login.py"
-						type:"POST"
-						
 
-					})
-				})
-			})
-!-->
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script type = "text/javascript">
-			$(document).ready(function(){
+			/*$(document).ready(function(){
 				$.ajax({
 					url:"cgi-bin/cookiechecker.py",
 					type: "GET",
-					dataType:"json",
-					success:function(dat){
-						console.log("success");
+					data:{
+
 					},
+					dataType:"json",
 				});
+			});*/
+			$(document.ready(function{
+				var x = document.cookie;
+			if (x){
+				window.location.replace("home.html");
+			}
 			});
+			);
+			
 		</script>
 
 	</head>

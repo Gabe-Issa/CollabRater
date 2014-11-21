@@ -14,16 +14,25 @@
 
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script type = "text/javascript">
+
+
+			//////////////////////////////////////////////////////
+			// first part handles edge case where username/pword//
+			// is already saved in browser.						//
+			//////////////////////////////////////////////////////
 			$(document).ready(function() {
-				///////////////////////////////////////////
-				// handles edge case where username/pword
-				// is already saved in browser.
-
 				if($('#password').val() != "" && $('#username').val() != ""){
-						$('#submit').removeAttr('disabled');
-					}
+					$('#submit').removeAttr('disabled');
+				}
+			});
 
-				//////////////////////////////////////////////
+			/*
+				second part enables "log in" button if both fields are non-empty strings,
+				and disables it if they are both empty strings.
+			*/
+
+			$(document).ready(function() {
+				
 
 				$('#form').keyup(function(){
 					if($('#password').val() != "" && $('#username').val() != ""){
@@ -33,50 +42,20 @@
 						$('#submit').attr('disabled', 'disabled');
 					}
 				});
- 			});
-		</script>
 
-		<!--
-			And this script disables the "log in" button again if user
-			hits the reset button.
-		!-->
+			/*
+				And this part disables the "log in" button again if user
+				hits the reset button.
+			*/
 
-		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-		<script type = "text/javascript">
-			$(document).ready(function() {
 				$('#reset').click(function(){
 					$('#submit').attr('disabled', 'disabled');				
 				});
  			});
 		</script>
 
-		<!--
-			Script here should call login.py when user clicks the "log in" button.
-			Then use ajax to check if the username/password combo is correct. If it
-			is not correct, it should print an error message to the #error div instead
-			of redirecting to login.py and printing "Sorry unregistered user".
-		!-->
+		
 
-		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-		<script type = "text/javascript">
-			/*$(document).ready(function(){
-				$.ajax({
-					url:"cgi-bin/cookiechecker.py",
-					type: "GET",
-					data:{
-
-					},
-					dataType:"json",
-				});
-			});*/
-			$(document).ready(function(){
-				var x = document.cookie;
-			if (x){
-				window.location.replace("home.html");
-			}
-			});
-			
-		</script>
 
 	</head>
 

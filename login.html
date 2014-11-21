@@ -15,6 +15,15 @@
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 		<script type = "text/javascript">
 			$(document).ready(function() {
+				///////////////////////////////////////////
+				// handles edge case where username/pword
+				// is already saved in browser.
+
+				if($('#password').val() != "" && $('#username').val() != ""){
+						$('#submit').removeAttr('disabled');
+					}
+
+				//////////////////////////////////////////////
 
 				$('#form').keyup(function(){
 					if($('#password').val() != "" && $('#username').val() != ""){
@@ -60,13 +69,12 @@
 					dataType:"json",
 				});
 			});*/
-			$(document.ready(function{
+			$(document).ready(function(){
 				var x = document.cookie;
 			if (x){
 				window.location.replace("home.html");
 			}
 			});
-			);
 			
 		</script>
 

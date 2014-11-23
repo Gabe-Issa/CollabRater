@@ -30,6 +30,14 @@ if cookie_string:
 		conn.commit()
 	except sqlite3.IntegrityError:
 		pass
+
+	print "Content-type: text/html"
+    print # don't forget newline
+	print "<html>"
+	print "<body>"
+	print "<p>added comment!/p>"
+	print "</body>"
+	print "</html>"
 else:
 	print "Content-type: text/html"
     print # don't forget newline

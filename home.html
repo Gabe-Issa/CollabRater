@@ -27,7 +27,7 @@
 		<h1>CollabRater</h1>
 
 		
-		<form method="post" action="cgi-bin/logout.py">
+		<form method="post" id = "logout" action="cgi-bin/logout.py">
 
 
 		<input type="submit" value ="Log Out"/>
@@ -40,14 +40,25 @@
 		<a href="profile.html">Edit your profile</a>
 
 
-		<form method="post" action="cgi-bin/viewprofile.py">
+		<form method="post" id = "viewprofile" action="cgi-bin/viewprofile.py">
 
 		<br>
 
 		<label>Enter a valid username to view a profile: </label> <input name="user_name" type=text size="30"/>
 
-
 		<input type="submit" value ="Search"/>
+
+		</form>
+
+		<br>
+
+		<form method="post" id = "postcomment" action="cgi-bin/comment.py">
+
+		<label>Enter the applicant you want to comment on:</label><input type="text" id="username"/>
+		<label>Enter your comment:</label><input type="text" id="comment"/>
+		<br>
+
+		<input type="submit" value="Post comment" id="postcommentbutton"/>
 
 		</form>
 

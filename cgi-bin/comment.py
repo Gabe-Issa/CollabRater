@@ -14,7 +14,9 @@ conn=sqlite3.connect('accounts.db')
 c=conn.cursor()
 
 cookie_string = os.environ.get('HTTP_COOKIE')
+print "cookie_string: " + cookie_string
 if cookie_string:
+	print ("I have a cookie!")
     my_cookie = Cookie.SimpleCookie(cookie_string)
     saved_session_id = my_cookie['session_id'].value
 

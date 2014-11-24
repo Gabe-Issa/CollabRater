@@ -36,7 +36,7 @@ try:
 
 		if adminstatus:
 
-			c.execute('select * from comments where profile=?', (usr,))
+			c.execute('select * from comments where username=?', (usr,))
 			all_comments = c.fetchall()
 
 			print "Content-type: text/html"

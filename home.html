@@ -15,14 +15,16 @@
 		<script>
 			$(document).ready(function(){
 				$("#usr").keyup(function(){
+					//$("#message").text("hello!");
 					$.ajax({
 						url: "cgi-bin/UsernameLookup.py",
 						type: "GET",
 						data: {
-							stuff: $('#usr').val()
+							name: $('#usr').val()
 						},
 						dataType: "json",
 						success:function(dat){
+							$("#message").text("yo");
 							console.dir(dat);
 							$("#message").text(dat.name);
 						},
@@ -32,15 +34,6 @@
 		</script>
 
 	</head>
-
-	<script>
-
-	// this doesn't work yet
-		/*cookie_string = document.cookie;
-		if(!cookie_string){
-			window.location = 'http://elipkind.rochestercs.org'
-		}*/
-	</script>
 
 	<body>
 
@@ -64,11 +57,13 @@
 
 		<br>
 
-		<label>Enter a valid username to view a profile: </label> <input name="user_name" type=text size="30"/>
+		<label>Enter a valid username to view a profile: </label> <input name="usr" id = "usr" type="text" size="30"/>
 
 		<input type="submit" value ="Search"/>
 
 		</form>
+
+		<div id = "message"></div>
 
 		<br>
 

@@ -30,5 +30,5 @@ try:
 		print "Content-type: application/json"
 		print
 		print '{"name": "Profile does not exist."}'
-except sqlit3.IntegrityError:
+except sqlite3.IntegrityError:
 	pass

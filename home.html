@@ -16,7 +16,7 @@
 			$(document).ready(function(){
 				$("#usr").keyup(function(){
 					$.ajax({
-						url: "cgi-bin/viewprofile.py",
+						url: "cgi-bin/UsernameLookup.py",
 						type: "GET",
 						data: {
 							stuff: $('#usr').val()
@@ -24,11 +24,12 @@
 						dataType: "json",
 						success:function(dat){
 							console.dir(dat);
-							$("message").text(dat.name);
+							$("#message").text(dat.name);
 						},
 					})
 				});
 			});
+		</script>
 
 
 	</head>

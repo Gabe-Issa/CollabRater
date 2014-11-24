@@ -11,16 +11,27 @@
 
 		<title>CollabRator</title>
 
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				$("#usr").keyup(function(){
+					$.ajax({
+						url: "cgi-bin/viewprofile.py",
+						type: "GET",
+						data: {
+							stuff: $('#usr').val()
+						},
+						dataType: "json",
+						success:function(dat){
+							console.dir(dat);
+							$("message").text(dat.name);
+						},
+					})
+				});
+			});
+
+
 	</head>
-
-	<script>
-
-	// this doesn't work yet
-		/*cookie_string = document.cookie;
-		if(!cookie_string){
-			window.location = 'http://elipkind.rochestercs.org'
-		}*/
-	</script>
 
 	<body>
 
@@ -44,9 +55,11 @@
 
 		<br>
 
-		<label>Enter a valid username to view a profile: </label> <input name="user_name" type=text size="30"/>
+		<label>Enter a valid username to view a profile: </label> <input name="user_name" id = "usr" type=text size="30"/>
 
-		<input type="submit" value ="Search"/>
+		<input type="submit" id = "lookup" value ="Search"/>
+
+		<div id = "message"></div>
 
 		</form>
 

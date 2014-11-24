@@ -31,8 +31,16 @@
 			});
 		</script>
 
-
 	</head>
+
+	<script>
+
+	// this doesn't work yet
+		/*cookie_string = document.cookie;
+		if(!cookie_string){
+			window.location = 'http://elipkind.rochestercs.org'
+		}*/
+	</script>
 
 	<body>
 
@@ -56,23 +64,19 @@
 
 		<br>
 
-		<label>Enter a valid username to view a profile: </label> <input name="user_name" id = "usr" type=text size="30"/>
+		<label>Enter a valid username to view a profile: </label> <input name="user_name" type=text size="30"/>
 
-		<input type="submit" id = "lookup" value ="Search"/>
-
-		<div id = "message"></div>
+		<input type="submit" value ="Search"/>
 
 		</form>
 
 		<br>
 
-		<form method="post" id = "postcomment" action="cgi-bin/comment.py">
+		<form method='post' id = 'deletecomments' action='cgi-bin/deletecomments.py'
 
-		<label>Enter the applicant you want to comment on:</label><input type="text" id="username"/>
-		<label>Enter your comment:</label><input type="text" id="comment"/>
-		<br>
+		<label>Enter the applicant you want to delete your comments from:</label><input name = 'usr_name' type='text' id='usr_name'/>
 
-		<input type="submit" value="Post comment" id="postcommentbutton"/>
+		<input type='submit' value='Delete' id='deletecommentsbutton'/>
 
 		</form>
 

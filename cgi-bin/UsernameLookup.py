@@ -23,7 +23,6 @@ conn = sqlite3.connect('accounts.db')
 c = conn.cursor()
 
 try:
-
 	c.execute('select * from profiles where username=?', (usr,))
 	all_results = c.fetchall()
 
@@ -31,3 +30,5 @@ try:
 		print "Content-type: application/json"
 		print
 		print '{"name": "Profile does not exist."}'
+except sqlit3.IntegrityError:
+	pass

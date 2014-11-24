@@ -44,8 +44,8 @@ if cookie_string:
 			print "Content-type: text/html"
         		print # don't forget newline
         		print "<html>"
-				print "<body>"
-				print "<a href = '../home.html'>Try Again</a>"
+			print "<body>"
+			print "<a href = '../home.html'>Try Again</a>"
         		print "</body>"
         		print "</html>"
 

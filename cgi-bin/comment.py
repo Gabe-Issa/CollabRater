@@ -1,50 +1,57 @@
 #!/usr/bin/python
-
-# Daniel Harris, Ethan Lipkind, Gabe Issa - CSC 210
-
-import cgi, Cookie, os, sqlite3
-
+# Daniel Harris, Gabe Issa, Ethan Lipkind
+import cgi
+import datetime
 import cgitb
 cgitb.enable()
+import sqlite3
+import os
+import uuid
+import Cookie
 
-form=cgi.FieldStorage()
-# ajax "data" will be the the comment input field with id = "comment"
+form = cgi.FieldStorage()
 
-conn=sqlite3.connect('accounts.db')
-c=conn.cursor()
+usr = form['usr_name'].value
+comment = form['comment'].value
+score = 0
+if form.getvalue('score'):
+   score = form.getvalue('score')
 
 cookie_string = os.environ.get('HTTP_COOKIE')
-print "cookie_string: " + cookie_string
+
 if cookie_string:
-	print ("I have a cookie!")
-    my_cookie = Cookie.SimpleCookie(cookie_string)
-    saved_session_id = my_cookie['session_id'].value
+	my_cookie = Cookie.SimpleCookie(cookie_string)
+	saved_session_id = my_cookie['session_id'].value
 
-    c.execute('select * from users where sessionID=?', (saved_session_id,))
-    all_results = c.fetchall()
-
-	username=form['username'].value
-	commenter= all_results[0][0]
-	comment=form['comment'].value
+	conn = sqlite3.connect('accounts.db')
+	c = conn.cursor()
 
 	try:
-		c.execute('insert into comments values(?, ?, ?);',(username, commenter, comment,))
-		conn.commit()
+		c.execute('select * from users where sessionID=?', (saved_session_id,))
+		all_results = c.fetchall()
+		commenter = all_results[0][0]
+
+		c.execute('select * from profiles where username=?', (usr,))
+		all_results = c.fetchall()
+
+		if len(all_results) > 0:
+
+			c.execute('insert into comments values(?,?,?,?);', (usr,commenter,comment,score))
+			conn.commit()
+
+			print "Content-type: text/html"
+			print "Location:        ../home.html"
+        		print # don't forget newline
+        		
+		else:
+
+			print "Content-type: text/html"
+        		print # don't forget newline
+        		print "<html>"
+        		print "<body>"
+			print "<a href = '../home.html'>Try Again</a>"
+        		print "</body>"
+        		print "</html>"
+
 	except sqlite3.IntegrityError:
 		pass
-
-	print "Content-type: text/html"
-    print # don't forget newline
-	print "<html>"
-	print "<body>"
-	print "<p>added comment!/p>"
-	print "</body>"
-	print "</html>"
-else:
-	print "Content-type: text/html"
-    print # don't forget newline
-	print "<html>"
-	print "<body>"
-	print "<p>Error, no cookie</p>"
-	print "</body>"
-	print "</html>"

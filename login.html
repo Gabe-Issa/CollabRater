@@ -4,10 +4,7 @@
 
 	<head>
 		<meta charset="utf-8">
-		<title>CollabRater</title>
-		<style type="text/css">
-			body{background-image: url("business.jpg");}
-		</style>
+		<title>CollabRator</title>
 
 		<!--
 			script below checks if the password field is empty.
@@ -63,19 +60,22 @@
 	</head>
 
 	<body>
-		<h1 style="text-align: center"><img src="logo.jpg"/></h1>
-		<div id = "username" style="width: 350px; margin-right: auto; margin-left: auto;"/>
-		<h2>Log In Here:</h2>
+		<h1>Welcome to CollabRater!</h1>
+		
+		<h2>Log In here:</h2>
 
 		<form method="post" action="cgi-bin/login.py" id = "form">
 
 
-		<label>Username:</label><input id = "username" name="user_name" type=text size="30"/>
+		<label>Username:</label> <input id = "username" name="user_name" type=text size="30"/>
 		<br>
 		<label>Password:&nbsp</label> <input id = "password" name="pass_word" type=password size="30"/>
 		<br>
 		<input type="submit" id = "submit" value = "Log In" disabled = "disabled"/> <input type="reset" id = "reset"/>
 
+		<div id = "error"></div>
+		
+		<br>
 		<div id = "error"></div>
 
 		<p>Don't Have An Account? <a href="register.html">Sign up here.</a></p>

@@ -1,8 +1,40 @@
 <html>
 
 <head>
-
-<title>collabRater</title>
+    <meta charset="utf-8">
+    <title>CollabRater</title>
+    <style type="text/css">
+      body{background-image: url("profile.jpg");}
+      label{
+          display: inline-block;
+          float: left;
+          clear: left;
+          width: 550px;
+          text-align: right;
+      }
+      input {
+        display: inline-block;
+        float: left;
+      }
+      ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          overflow: hidden;
+      }
+      li {
+        float: left;
+      }
+      a:link, a:visited {
+        display: block;
+        width: 120px;
+        font-weight: bold;
+        text-align: center;
+        padding: 4px;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+    </style>
 
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 
@@ -150,9 +182,15 @@ $(document).ready(function() {
 
 <body>
 
+<ul>
+      <li><a href="home.html">Home Page</a></li>
+      <li><a href="profile.html">Create and Edit your Profile</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
 
+<h1 style="text-align: center"><img src="logo.jpg"/></h1>
 
-<h1>Profile</h1>
+<h2 style="text-align: center">Fill Out All Boxes of Information</h2>
 
 
 
@@ -160,7 +198,7 @@ $(document).ready(function() {
 
 
 
-<label>Name</label>: <input name="name" id="name"/>
+<label>Name:</label><input name="name" id="name"/>
 
 <br/>
 
@@ -168,7 +206,7 @@ $(document).ready(function() {
 
 <br/>
 
-<label>Phone Number</label>: <input name="phonenumber" id="phonenumber"/>
+<label>Phone Number:</label><input name="phonenumber" id="phonenumber"/>
 
 <br/>
 
@@ -186,7 +224,11 @@ $(document).ready(function() {
 
 <label>City:</label> <input name="city" id="city"/>
 
+<br/>
+
 <label>State:</label> <input name="state" id="state"/>
+
+<br/>
 
 <label>Zip Code:</label> <input name="zipcode" id="zipcode"/>
 
@@ -196,18 +238,22 @@ $(document).ready(function() {
 
 <br/>
 
-<label>Highest Level of Education</label> <input name="education" id="education"/>
+<label>Highest Level of Education:</label> <input name="education" id="education"/>
 
 <br/>
 
-<label>Current Employer(if any)</label> <input name="employer" id="employer"/>
+<label>Current Employer(if any):</label> <input name="employer" id="employer"/>
 
 <br/>
 
-<label>LinkedIn Profile URL</label> <input name="linkedin" id="linkedin"/>
+<label>LinkedIn Profile URL:</label> <input name="linkedin" id="linkedin"/>
 
 <br/>
-
+<br/>
+<br/>
+<br/>
+<br/>
+<div id = "username" style="width: 200px; margin-right: auto; margin-left: auto;"/>
 <button value = "save" id="profileSave">Save Profile</button>
 
 

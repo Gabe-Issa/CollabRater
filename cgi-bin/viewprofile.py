@@ -70,7 +70,7 @@ try:
 			print "<br><label>Enter your comment:</label><input name= 'comment' type='text' id='comment'/>"
 			print "<input type='submit' value='Submit' id='commentandscore'/>"
 			print "</form>"
-			print "<div id='comments'>
+			print "<div id='comments'>"
 			for index in range(len(all_comments)):
 				print "<h3>" + all_comments[index][1] + "</h3><p>" + all_comments[index][2] + "</p><p>Rating: " + all_comments[index][3] + "</p>"
 			print "</div>"

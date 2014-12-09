@@ -18,7 +18,6 @@ cookie_string = os.environ.get('HTTP_COOKIE')
 my_cookie = Cookie.SimpleCookie(cookie_string)
 saved_session_id = my_cookie['session_id'].value
 
-
 conn = sqlite3.connect('accounts.db')
 c = conn.cursor()
 
@@ -42,7 +41,45 @@ try:
 			print "Content-type: text/html"
 			print # don't forget newline
 			print "<html>"
+			print "<head>"
+			print "<title>CollabRater</title>"
+			print "<script src='http://code.jquery.com/jquery-1.11.1.min.js'></script>"
+
+			print "<script>"
+			print "$(document).ready(function(){"
+			print "var profile = '" + usr + "';"
+			print "document.getElementById('deleteme').value = (profile);"
+			print "});"
+			print "</script>"
+
+			print "<script>"
+			print "var user = '" + usr + "';"
+			print "$(document).ready(function(){"
+			print "$('#commentandscore').click(function(){"
+			print "$.ajax("
+			print "{"
+			print "url: 'comment.py',"
+			print "type: 'GET',"
+			print "data: {"
+			print "profile: user,"
+			print "comment: $('#comment').val(),"
+			print "score: $('input[name=score]:checked').val()"
+			print "},"
+			print "dataType: 'json',"
+			print "success: function(dat){"
+			print "console.dir(dat);"
+			print "$('#comments').append('<h3>' + dat.viewer + '</h3><p>' + dat.comment + '</p><p>Rating: ' + dat.score + '</p>');"
+			print "},"
+			print "}"
+			print ");"
+			print "});"
+			print "});"
+			print "</script>"
+
+			print "</head>"
+
 			print "<body>"
+
 			print "<a href = '../home.html'>Return to Main Page</a>"
 			print "<h1>" + all_results[0][1] + "\'s profile: (Username " + usr + ")</h1>"
 			print "<p>Date of Birth: " + all_results[0][2] + "</p>"
@@ -57,35 +94,34 @@ try:
 			print "<p>Education: " + all_results[0][11] + "</p>"
 			print "<p>Employer: " + all_results[0][12] + "</p>"
 			print "<p>LinkedIn: " + all_results[0][13] + "</p>"
-			print "<br>"
-			print "<form method='post' id = 'postcomment' action='comment.py'>"
-			print "<label>Enter the applicant you want to comment on:</label><input name = 'usr_name' type='text' id='usr_name'/>"
-			print "<br><label>1</label><input type='radio' name='score' value='1'>"
+			print "<br><label>Please rate this potential employee between 1 and 7:</label><br>"
+			print "<label>1</label><input type='radio' name='score' value='1'>"
 			print "<label>2</label><input type='radio' name='score' value='2'>"
 			print "<label>3</label><input type='radio' name='score' value='3'>"
 			print "<label>4</label><input type='radio' name='score' value='4'>"
 			print "<label>5</label><input type='radio' name='score' value='5'>"
 			print "<label>6</label><input type='radio' name='score' value='6'>"
 			print "<label>7</label><input type='radio' name='score' value='7'>"
-			print "<br><label>Enter your comment:</label><input name= 'comment' type='text' id='comment'/>"
-			print "<input type='submit' value='Submit' id='commentandscore'/>"
-			print "</form>"
-			print "<div id='comments'>
+			print "<br><br><label>Enter your comment:</label><br><textarea rows='10' cols='50' type='text' name='comment' id='comment'></textarea><br>"
+			print "<button id='commentandscore'>Submit</button>"
+			print "<div id='comments'>"
 			for index in range(len(all_comments)):
 				print "<h3>" + all_comments[index][1] + "</h3><p>" + all_comments[index][2] + "</p><p>Rating: " + all_comments[index][3] + "</p>"
 			print "</div>"
 			print "<form method='post' id = 'deletecomments' action='deletecomments.py'>"
-			print "<label>Enter the applicant you want to delete your comments from:</label><input name = 'usr_name' type='text' id='usr_name'/>"
+			print "<label>Delete all your comments on this page: </label><input name = 'usr_name' type='text' id='deleteme' style= 'display: none'/>"
 			print "<input type='submit' value='Delete' id='deletecommentsbutton'/>"
 			print "</form>"
+
 			print "</body>"
 			print "</html>"
 
 		else:
-			
+
 			print "Content-type: text/html"
 			print # don't forget newline
 			print "<html>"
+			print "<head><title>CollabRater</title></head>"
 			print "<body>"
 			print "<h1>" + all_results[0][1] + "\'s profile: (Username " + usr + ")</h1>"
 			print "<p>Date of Birth: " + all_results[0][2] + "</p>"
@@ -119,3 +155,4 @@ try:
 except sqlite3.IntegrityError:
 
 	pass
+

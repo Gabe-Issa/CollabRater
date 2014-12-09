@@ -11,11 +11,9 @@ import Cookie
 
 form = cgi.FieldStorage()
 
-usr = form['usr_name'].value
+usr = form['profile'].value
 comment = form['comment'].value
-score = 0
-if form.getvalue('score'):
-   score = form.getvalue('score')
+score = form['score'].value
 
 cookie_string = os.environ.get('HTTP_COOKIE')
 
@@ -39,9 +37,9 @@ if cookie_string:
 			c.execute('insert into comments values(?,?,?,?);', (usr,commenter,comment,score))
 			conn.commit()
 
-			print "Content-type: text/html"
-			print "Location:        ../home.html"
-        		print # don't forget newline
+			print "Content-type: application/json"
+			print
+			print '{"viewer": "' + commenter + '", "comment": "' + comment + '", "score": "' + str(score) + '"}'
         		
 		else:
 

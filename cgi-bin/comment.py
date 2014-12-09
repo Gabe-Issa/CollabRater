@@ -41,7 +41,10 @@ if cookie_string:
 
 			print "Content-type: text/html"
 			print "Location:        ../home.html"
-        		print # don't forget newline
+        	print # don't forget newline
+			print "Content-type: application/json"
+			print
+			print '{"viewer": commenter, "comment": comment, "score": score}'
         		
 		else:
 
